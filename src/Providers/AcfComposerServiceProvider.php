@@ -26,8 +26,6 @@ class AcfComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->make('AcfComposer');
-
         $this->publishes([
             __DIR__ . '/../../config/acf.php' => $this->app->configPath('acf.php'),
         ], 'config');
@@ -38,6 +36,9 @@ class AcfComposerServiceProvider extends ServiceProvider
             \Log1x\AcfComposer\Console\PartialMakeCommand::class,
             \Log1x\AcfComposer\Console\WidgetMakeCommand::class,
             \Log1x\AcfComposer\Console\OptionsMakeCommand::class,
+            \Log1x\AcfComposer\Console\StubPublishCommand::class,
         ]);
+
+        $this->app->make('AcfComposer');
     }
 }
